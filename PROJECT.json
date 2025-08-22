@@ -1,6 +1,6 @@
 {
   "project": {
-    "name": "pupil-labs-neon-js",
+    "name": "open-neon-js",
     "description": "LLM-friendly JavaScript/TypeScript API for Pupil Labs Neon eye tracker with semantic data enhancement",
     "version": "0.1.0",
     "status": "active_development",

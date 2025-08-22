@@ -121,8 +121,8 @@ import { connectToDevice } from '@open-neon/browser'
 
 ```bash
 # Clone repository
-git clone https://github.com/pupil-labs/pupil-labs-neon-js
-cd pupil-labs-neon-js
+git clone https://github.com/michaelhil/open-neon-js
+cd open-neon-js
 
 # Install dependencies (works with both npm and bun)
 npm install

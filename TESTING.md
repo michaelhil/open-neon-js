@@ -5,7 +5,7 @@
 ## 📁 Testing Architecture Overview
 
 ```
-pupil-labs-neon-js/
+open-neon-js/
 ├── 📋 TESTING.md                    ← This document
 ├── 🔧 test-utils/                   ← Testing utilities & mock infrastructure
 │   ├── mock-server.js               ← Complete Pupil Labs device simulation
