@@ -14,7 +14,7 @@ import {
   ErrorCodes,
   createDeferred,
   findClosestTimestamp
-} from '@pupil-labs/neon-core'
+} from 'open-neon-core'
 
 /**
  * Discover and connect to first available device
@@ -42,7 +42,7 @@ export const discoverOneDevice = async (options = {}) => {
  * @returns {Promise<Object>} Connected device
  */
 export const connectToDevice = async (address, options = {}) => {
-  const { parseAddress } = await import('@pupil-labs/neon-core')
+  const { parseAddress } = await import('open-neon-core')
   const parsed = parseAddress(address)
   
   const deviceInfo = {

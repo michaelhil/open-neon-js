@@ -34,8 +34,8 @@ describe('Discovery', () => {
   })
   
   describe('createDiscovery', () => {
-    it('should create discovery service', () => {
-      discovery = createDiscovery()
+    it('should create discovery service', async () => {
+      discovery = await createDiscovery()
       
       expect(discovery).toBeDefined()
       expect(typeof discovery.start).toBe('function')
@@ -43,8 +43,8 @@ describe('Discovery', () => {
       expect(typeof discovery.getDevices).toBe('function')
     })
     
-    it('should start and stop discovery', () => {
-      discovery = createDiscovery()
+    it('should start and stop discovery', async () => {
+      discovery = await createDiscovery()
       
       discovery.start()
       // Verify Bonjour browser was started
@@ -55,7 +55,7 @@ describe('Discovery', () => {
     })
     
     it('should handle device events', async (done) => {
-      discovery = createDiscovery()
+      discovery = await createDiscovery()
       
       discovery.on('device', (device) => {
         expect(device).toBeDefined()

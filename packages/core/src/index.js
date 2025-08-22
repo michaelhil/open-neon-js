@@ -15,6 +15,12 @@ export * from './utils.js'
 // Export all errors
 export * from './errors.js'
 
+// Export semantic enhancement utilities
+export * from './semantic.js'
+
+// Export minimal observable implementation
+export * from './observable.js'
+
 // Version info
 export const VERSION = '0.1.0'
 export const API_VERSION = '1.0.0'

@@ -1,6 +1,6 @@
 {
   "name": "open-neon-browser",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.4",
   "type": "module",
   "description": "Browser implementation for Pupil Labs Neon eye tracker with WebSocket and WebRTC support",
   "main": "./dist/index.js",
@@ -26,8 +26,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "open-neon-core": "0.1.0-beta.1",
-    "rxjs": "^7.8.1"
+    "open-neon-core": "0.1.0-beta.4"
   },
   "devDependencies": {
     "vite": "^5.0.11",

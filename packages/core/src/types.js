@@ -1,10 +1,38 @@
 /**
+ * @typedef {Object} GazeSemanticData
+ * @property {string} description - Human-readable description of gaze location
+ * @property {string} region - Screen region (e.g., 'upper_left', 'center', 'lower_right')
+ * @property {string} quality - Data quality description (e.g., 'high_confidence', 'moderate', 'low')
+ * @property {string} interpretation - Behavioral interpretation (e.g., 'focused_attention', 'scanning')
+ * @property {string} [behavior_type] - Gaze behavior classification (e.g., 'fixation', 'saccade', 'smooth_pursuit')
+ */
+
+/**
+ * @typedef {Object} GazeContextData
+ * @property {string} calibration_quality - Calibration status description
+ * @property {string} tracking_stability - Tracking stability assessment
+ * @property {string} device_health - Overall device health status
+ * @property {string} environmental_conditions - Environmental assessment
+ */
+
+/**
+ * @typedef {Object} GazeDerivedData
+ * @property {{x: number, y: number}} [screen_coordinates] - Screen pixel coordinates (if screen size known)
+ * @property {string} attention_level - Attention level assessment
+ * @property {string} gaze_pattern - Current gaze pattern classification
+ * @property {string} confidence_level - Human-readable confidence level
+ */
+
+/**
  * @typedef {Object} GazeData
  * @property {number} x - X coordinate (0-1 normalized)
  * @property {number} y - Y coordinate (0-1 normalized)  
  * @property {number} confidence - Confidence value (0-1)
  * @property {number} timestamp - Unix timestamp in seconds
  * @property {boolean} worn - Whether device is being worn
+ * @property {GazeSemanticData} [semantic] - Optional semantic enhancement data
+ * @property {GazeContextData} [context] - Optional device and environmental context
+ * @property {GazeDerivedData} [derived] - Optional derived calculations and interpretations
  */
 
 /**
@@ -108,6 +136,15 @@
  */
 
 /**
+ * @typedef {Object} SemanticConfig
+ * @property {boolean} enabled - Enable semantic enhancement
+ * @property {'basic' | 'enhanced' | 'full'} level - Level of semantic enhancement
+ * @property {boolean} includeContext - Include device and environmental context
+ * @property {boolean} includeDerivations - Include derived calculations (screen coords, patterns)
+ * @property {boolean} humanReadableErrors - Include human-readable error descriptions
+ */
+
+/**
  * @typedef {Object} StreamConfig
  * @property {boolean} gaze - Enable gaze streaming
  * @property {boolean} sceneVideo - Enable scene video streaming
@@ -116,6 +153,7 @@
  * @property {boolean} events - Enable eye events streaming
  * @property {number} gazeSampleRate - Gaze sample rate in Hz
  * @property {number} videoFrameRate - Video frame rate in fps
+ * @property {SemanticConfig} [semantic] - Optional semantic enhancement configuration
  */
 
 /**

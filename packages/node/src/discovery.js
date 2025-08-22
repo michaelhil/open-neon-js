@@ -1,7 +1,7 @@
 /**
  * Device discovery for Node.js using mDNS/Bonjour
+ * Implements lazy loading to avoid importing bonjour-service unless needed
  */
-import { Bonjour } from 'bonjour-service'
 import { EventEmitter } from 'node:events'
 import { 
   MDNS, 
@@ -9,18 +9,64 @@ import {
   TIMEOUTS,
   DeviceError, 
   ErrorCodes 
-} from '@pupil-labs/neon-core'
+} from 'open-neon-core'
+
+// Lazy-loaded Bonjour instance
+let BonjourClass = null
+
+/**
+ * Check if discovery is available in this environment
+ * @returns {boolean} True if mDNS discovery is available
+ */
+export const isDiscoveryAvailable = () => {
+  try {
+    // Check if we're in Node.js environment
+    return typeof process !== 'undefined' && process.versions && process.versions.node
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Lazy load Bonjour service
+ * @returns {Promise<Bonjour>} Bonjour class
+ */
+const loadBonjour = async () => {
+  if (!BonjourClass) {
+    if (!isDiscoveryAvailable()) {
+      throw new DeviceError(
+        'Discovery is not available in this environment. mDNS discovery requires Node.js.',
+        ErrorCodes.NOT_IMPLEMENTED
+      )
+    }
+    
+    try {
+      const { Bonjour } = await import('bonjour-service')
+      BonjourClass = Bonjour
+    } catch (error) {
+      throw new DeviceError(
+        'Failed to load mDNS discovery service. Install bonjour-service dependency: npm install bonjour-service',
+        ErrorCodes.NOT_IMPLEMENTED,
+        { error }
+      )
+    }
+  }
+  return BonjourClass
+}
 
 /**
  * Create device discovery service
  * @param {Object} options - Discovery options
- * @returns {Object} Discovery service
+ * @returns {Promise<Object>} Discovery service
  */
-export const createDiscovery = (options = {}) => {
+export const createDiscovery = async (options = {}) => {
   const {
     timeout = DEFAULTS.DISCOVERY_TIMEOUT,
     serviceType = MDNS.SERVICE_TYPE
   } = options
+  
+  // Load Bonjour service
+  const Bonjour = await loadBonjour()
   
   const emitter = new EventEmitter()
   const bonjour = new Bonjour()
@@ -102,7 +148,7 @@ export const createDiscovery = (options = {}) => {
  */
 export const discoverDevices = async (options = {}) => {
   const { timeout = DEFAULTS.DISCOVERY_TIMEOUT } = options
-  const discovery = createDiscovery(options)
+  const discovery = await createDiscovery(options)
   const devices = []
   
   return new Promise((resolve, reject) => {
@@ -137,7 +183,7 @@ export const discoverDevices = async (options = {}) => {
  */
 export const discoverFirstDevice = async (options = {}) => {
   const { timeout = DEFAULTS.DISCOVERY_TIMEOUT } = options
-  const discovery = createDiscovery(options)
+  const discovery = await createDiscovery(options)
   
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
@@ -174,7 +220,7 @@ export const discoverFirstDevice = async (options = {}) => {
  */
 export const waitForDevice = async (deviceId, options = {}) => {
   const { timeout = DEFAULTS.DISCOVERY_TIMEOUT } = options
-  const discovery = createDiscovery(options)
+  const discovery = await createDiscovery(options)
   
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {

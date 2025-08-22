@@ -14,10 +14,10 @@ export default defineConfig({
       fileName: (format) => format === 'es' ? 'index.js' : 'index.umd.js'
     },
     rollupOptions: {
-      external: ['@pupil-labs/neon-core', 'rxjs'],
+      external: ['open-neon-core', 'rxjs'],
       output: {
         globals: {
-          '@pupil-labs/neon-core': 'PupilLabsNeonCore',
+          'open-neon-core': 'OpenNeonCore',
           'rxjs': 'rxjs'
         }
       }

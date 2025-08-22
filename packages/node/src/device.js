@@ -3,8 +3,8 @@
  */
 import { EventEmitter } from 'node:events'
 import WebSocket from 'ws'
-import fetch from 'node-fetch'
-import { Observable } from 'rxjs'
+// Use native fetch API (available in Node.js 18+)
+import { Observable } from 'open-neon-core'
 import {
   API_PATHS,
   WS_PATHS,
@@ -19,8 +19,11 @@ import {
   ErrorCodes,
   createDeferred,
   retry,
-  withTimeout
-} from '@pupil-labs/neon-core'
+  withTimeout,
+  enhanceGazeData,
+  enhanceError,
+  createSemanticConfig
+} from 'open-neon-core'
 
 /**
  * Create a device instance
@@ -209,10 +212,14 @@ export const createDevice = (deviceInfo, options = {}) => {
   }
   
   // Stream creation
-  const createGazeStream = () => {
-    if (state.streams.has('gaze')) {
-      return state.streams.get('gaze').observable
+  const createGazeStream = (config = {}) => {
+    const streamKey = `gaze_${JSON.stringify(config)}`
+    if (state.streams.has(streamKey)) {
+      return state.streams.get(streamKey).observable
     }
+    
+    // Create semantic configuration
+    const semanticConfig = createSemanticConfig(config.semantic)
     
     const stream = new Observable(subscriber => {
       if (state.connectionState !== ConnectionState.CONNECTED) {
@@ -229,9 +236,16 @@ export const createDevice = (deviceInfo, options = {}) => {
           gazeWs.on('message', (data) => {
             try {
               const gazeData = JSON.parse(data)
-              subscriber.next(gazeData)
+              
+              // Apply semantic enhancement if enabled
+              const enhancedData = semanticConfig.enabled 
+                ? enhanceGazeData(gazeData, semanticConfig, state.deviceInfo)
+                : gazeData
+              
+              subscriber.next(enhancedData)
             } catch (error) {
-              subscriber.error(StreamError('Failed to parse gaze data', ErrorCodes.STREAM_DECODE_ERROR, { error }))
+              const enhancedError = enhanceError(error, semanticConfig)
+              subscriber.error(StreamError('Failed to parse gaze data', ErrorCodes.STREAM_DECODE_ERROR, { error: enhancedError }))
             }
           })
           
@@ -257,11 +271,11 @@ export const createDevice = (deviceInfo, options = {}) => {
         if (gazeWs && gazeWs.readyState === WebSocket.OPEN) {
           gazeWs.close()
         }
-        state.streams.delete('gaze')
+        state.streams.delete(streamKey)
       }
     })
     
-    state.streams.set('gaze', { observable: stream, complete: () => {} })
+    state.streams.set(streamKey, { observable: stream, complete: () => {} })
     return stream
   }
   

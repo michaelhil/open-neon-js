@@ -1,0 +1,132 @@
+{
+  "prompt": {
+    "title": "PROJECT.json Documentation Standard for Software Development Projects",
+    "purpose": "This document establishes the PROJECT.json file as the single source of truth for all critical project information, decisions, and ongoing status. It must be continuously maintained and updated throughout the development process.",
+    "instructions": {
+      "core_principle": "The PROJECT.json file is a living document that captures ALL critical information about the project. Every significant decision, architectural choice, development phase, known issue, and project status should be recorded here. This ensures continuity across development sessions and provides context for future work.",
+      "maintenance_requirements": [
+        "Update PROJECT.json immediately after any significant decision or change",
+        "Record the reasoning behind all architectural and technical choices",
+        "Document current status of all development phases and deliverables", 
+        "Track all known issues with their impact, workarounds, and planned resolutions",
+        "Maintain publishing workflows, deployment processes, and automation requirements",
+        "Update version information and dependency status regularly",
+        "Record testing strategies, success metrics, and validation approaches"
+      ],
+      "when_to_update": [
+        "After completing any development phase or major milestone",
+        "When making architectural decisions or technology stack choices",
+        "When discovering or resolving bugs, issues, or technical debt",
+        "When establishing new workflows, processes, or automation",
+        "When updating dependencies, versions, or publishing to external platforms",
+        "When adding new features, packages, or significant code changes",
+        "At the end of each development session to capture progress and next steps"
+      ]
+    }
+  },
+  "template_structure": {
+    "project": {
+      "name": "project-name",
+      "description": "Brief description of what the project does and its purpose",
+      "version": "current version number",
+      "status": "development_stage (e.g., 'active_development', 'beta', 'production')",
+      "last_updated": "YYYY-MM-DD"
+    },
+    "architecture": {
+      "approach": "chosen architectural pattern/approach",
+      "reasoning": "explanation of why this approach was selected over alternatives",
+      "packages": {
+        "package_name": "purpose and responsibility of each package/module"
+      },
+      "technology_stack": {
+        "runtime": "primary runtime environment",
+        "language": "programming language and any variants/extensions",
+        "patterns": "design patterns and coding paradigms used",
+        "key_dependencies": "critical libraries, frameworks, or tools",
+        "build_system": "build tools and output formats",
+        "testing_framework": "testing approach and tools"
+      }
+    },
+    "development_phases": {
+      "phase_name": {
+        "status": "completed | in_progress | pending | blocked",
+        "deliverables": ["list of specific deliverables for this phase"],
+        "notes": "any important details about this phase"
+      }
+    },
+    "testing": {
+      "strategy": "overall testing approach and philosophy",
+      "current_status": "description of what testing exists and works",
+      "coverage_targets": "testing coverage goals and metrics",
+      "future_improvements": "planned testing enhancements"
+    },
+    "publishing_workflow": {
+      "policy": "description of publishing and deployment strategy",
+      "platforms": ["list of platforms where project is published"],
+      "automation_requirements": ["list of automation needs"],
+      "current_status": {
+        "platform_name": "current version and status on each platform"
+      }
+    },
+    "known_issues": {
+      "issue_name": {
+        "description": "clear description of the problem",
+        "impact": "how this affects users or development",
+        "error_details": "specific error messages or technical details",
+        "workaround": "temporary solution if available",
+        "priority": "low | medium | high | critical",
+        "planned_resolution": "how this will be fixed",
+        "status": "identified | investigating | in_progress | deferred",
+        "notes": "any additional context"
+      }
+    },
+    "constraints": {
+      "technical": ["technical limitations or challenges"],
+      "platform": ["platform-specific constraints"],
+      "business": ["business or domain-specific limitations"]
+    },
+    "success_metrics": {
+      "technical": ["measurable technical goals"],
+      "usability": ["user experience goals"],
+      "business": ["business or domain-specific success criteria"]
+    },
+    "future_roadmap": {
+      "planned_features": ["list of planned enhancements"],
+      "research_areas": ["areas requiring investigation"],
+      "potential_improvements": ["optimization opportunities"]
+    }
+  },
+  "usage_guidelines": {
+    "dos": [
+      "Keep information current and accurate at all times",
+      "Use clear, concise language that future developers can understand",
+      "Include specific technical details and error messages",
+      "Document the 'why' behind decisions, not just the 'what'",
+      "Update immediately when project status changes",
+      "Include links to relevant external resources or documentation",
+      "Use consistent formatting and structure across all sections"
+    ],
+    "donts": [
+      "Don't let the document become outdated or inaccurate",
+      "Don't include temporary debugging information or draft content",
+      "Don't omit important context or reasoning behind decisions",
+      "Don't use vague language that could be misinterpreted",
+      "Don't duplicate information that's better maintained elsewhere",
+      "Don't include sensitive information like passwords or API keys"
+    ]
+  },
+  "integration_with_development": {
+    "session_start": "Review PROJECT.json to understand current status, recent changes, and next priorities",
+    "during_development": "Update relevant sections as decisions are made and progress occurs",
+    "session_end": "Update project status, record new issues discovered, and note next steps",
+    "major_milestones": "Update development phases, version numbers, and success metrics",
+    "problem_solving": "Document issues encountered and solutions discovered for future reference"
+  },
+  "example_scenarios": {
+    "architectural_decision": "When choosing between different technical approaches, document the options considered, criteria used for selection, and reasoning for the final choice in the architecture section",
+    "bug_discovery": "When encountering a bug, immediately add it to known_issues with description, impact, and any workarounds discovered",
+    "feature_completion": "When completing a major feature, update the relevant development phase status and record any new capabilities or changes",
+    "deployment": "When publishing or deploying, update publishing_workflow with new versions, platforms, and any process improvements",
+    "dependency_changes": "When updating dependencies or technology stack, record changes in architecture.technology_stack and note any migration requirements"
+  }
+}

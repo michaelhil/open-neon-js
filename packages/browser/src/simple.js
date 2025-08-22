@@ -7,7 +7,7 @@ import {
   DeviceError,
   ErrorCodes,
   parseAddress
-} from '@pupil-labs/neon-core'
+} from 'open-neon-core'
 
 /**
  * Connect to device at specific address

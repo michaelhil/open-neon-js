@@ -15,7 +15,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        '@pupil-labs/neon-core',
+        'open-neon-core',
         'ws',
         'node-fetch', 
         'bonjour-service',

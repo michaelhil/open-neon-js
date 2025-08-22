@@ -15,9 +15,9 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        '@pupil-labs/neon-core',
-        '@pupil-labs/neon-node',
-        '@pupil-labs/neon-browser'
+        'open-neon-core',
+        'open-neon-node',
+        'open-neon-browser'
       ]
     },
     minify: false,
