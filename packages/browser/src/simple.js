@@ -7,7 +7,7 @@ import {
   DeviceError,
   ErrorCodes,
   parseAddress
-} from 'open-neon-core'
+} from 'open-neon-js-api-core'
 
 /**
  * Connect to device at specific address

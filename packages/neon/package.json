@@ -1,5 +1,5 @@
 {
-  "name": "open-neon",
+  "name": "open-neon-js-api",
   "version": "0.1.0-beta.4",
   "type": "module",
   "description": "Auto-detecting Pupil Labs Neon eye tracker API for Node.js and browsers",
@@ -26,9 +26,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "open-neon-core": "0.1.0-beta.4",
-    "open-neon-node": "0.1.0-beta.4",
-    "open-neon-browser": "0.1.0-beta.4"
+    "open-neon-js-api-core": "0.1.0-beta.4",
+    "open-neon-js-api-node": "0.1.0-beta.4",
+    "open-neon-js-api-browser": "0.1.0-beta.4"
   },
   "devDependencies": {
     "vite": "^5.0.11",

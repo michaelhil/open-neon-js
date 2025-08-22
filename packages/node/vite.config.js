@@ -15,11 +15,9 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        'open-neon-core',
+        'open-neon-js-api-core',
         'ws',
-        'node-fetch', 
         'bonjour-service',
-        'rxjs',
         'node:events',
         'node:buffer',
         'node:stream',

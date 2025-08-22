@@ -15,9 +15,9 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        'open-neon-core',
-        'open-neon-node',
-        'open-neon-browser'
+        'open-neon-js-api-core',
+        'open-neon-js-api-node',
+        'open-neon-js-api-browser'
       ]
     },
     minify: false,

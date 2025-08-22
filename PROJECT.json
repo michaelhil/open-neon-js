@@ -1,6 +1,6 @@
 {
   "project": {
-    "name": "open-neon-js",
+    "name": "open-neon-js-api",
     "description": "LLM-friendly JavaScript/TypeScript API for Pupil Labs Neon eye tracker with semantic data enhancement",
     "version": "0.1.0",
     "status": "active_development",
@@ -99,12 +99,12 @@
       "Generate comprehensive release notes documenting changes across both platforms"
     ],
     "current_status": {
-      "github_repository": "https://github.com/michaelhil/open-neon-js",
+      "github_repository": "https://github.com/michaelhil/open-neon-js-api",
       "npm_packages": [
-        "open-neon-core@0.1.0-beta.4",
-        "open-neon-node@0.1.0-beta.4", 
-        "open-neon-browser@0.1.0-beta.4",
-        "open-neon@0.1.0-beta.4"
+        "open-neon-js-api-core@0.1.0-beta.4",
+        "open-neon-js-api-node@0.1.0-beta.4", 
+        "open-neon-js-api-browser@0.1.0-beta.4",
+        "open-neon-js-api@0.1.0-beta.4"
       ],
       "last_sync": "2024-08-22",
       "sync_status": "manual"
@@ -209,7 +209,7 @@
         "Edge computing applications for ultra-low latency responsive systems"
       ],
       "implementation_strategy": {
-        "phase_1": "External open-neon-mqtt package for validation and requirements gathering",
+        "phase_1": "External open-neon-js-mqtt package for validation and requirements gathering",
         "phase_2": "Core API integration based on adoption metrics and performance benefits",
         "priority": "high",
         "rationale": "MQTT is standard IoT protocol with broad ecosystem support and strong potential for industrial/smart home applications"

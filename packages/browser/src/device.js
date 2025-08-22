@@ -1,7 +1,7 @@
 /**
  * Browser Device implementation with WebSocket and WebRTC support
  */
-import { Observable } from 'open-neon-core'
+import { Observable } from 'open-neon-js-api-core'
 import {
   API_PATHS,
   WS_PATHS,
@@ -19,7 +19,7 @@ import {
   enhanceGazeData,
   enhanceError,
   createSemanticConfig
-} from 'open-neon-core'
+} from 'open-neon-js-api-core'
 
 /**
  * Create a browser device instance

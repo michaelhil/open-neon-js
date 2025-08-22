@@ -9,7 +9,7 @@ import {
   TIMEOUTS,
   DeviceError, 
   ErrorCodes 
-} from 'open-neon-core'
+} from 'open-neon-js-api-core'
 
 // Lazy-loaded Bonjour instance
 let BonjourClass = null

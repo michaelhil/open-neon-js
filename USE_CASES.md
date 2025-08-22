@@ -207,8 +207,8 @@ mqttStream.connect()
 
 **Option 2: External Package Approach**
 ```javascript
-// External open-neon-mqtt package
-import { MQTTStreamer } from 'open-neon-mqtt'
+// External open-neon-js-mqtt package
+import { MQTTStreamer } from 'open-neon-js-mqtt'
 
 const gazeStream = device.createGazeStream({ semantic: { enabled: true } })
 const mqttStreamer = new MQTTStreamer({
@@ -264,12 +264,12 @@ gazeStream.subscribe(data => {
 ### Recommended Implementation Strategy
 
 #### Phase 1: External Package (Immediate - Lower Risk)
-**Rationale**: Start with an external `open-neon-mqtt` package to validate the use case and gather user requirements without adding complexity to the core API.
+**Rationale**: Start with an external `open-neon-js-mqtt` package to validate the use case and gather user requirements without adding complexity to the core API.
 
 **Implementation:**
 ```javascript
-// open-neon-mqtt package
-import { Observable } from 'open-neon-core'
+// open-neon-js-mqtt package
+import { Observable } from 'open-neon-js-api-core'
 import mqtt from 'mqtt'
 
 export class MQTTStreamer {
@@ -426,7 +426,7 @@ attentionStream.subscribe(data => {
 - Strong potential for industrial, smart home, and accessibility applications
 
 **Recommended Approach**: 
-1. **Immediate**: Create `open-neon-mqtt` external package to validate use case
+1. **Immediate**: Create `open-neon-js-mqtt` external package to validate use case
 2. **Short-term**: Gather user feedback and optimize integration patterns
 3. **Medium-term**: Consider core API integration based on adoption metrics
 4. **Long-term**: Explore advanced features like edge processing and multi-broker support

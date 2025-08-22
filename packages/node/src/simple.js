@@ -14,7 +14,7 @@ import {
   ErrorCodes,
   createDeferred,
   findClosestTimestamp
-} from 'open-neon-core'
+} from 'open-neon-js-api-core'
 
 /**
  * Discover and connect to first available device
@@ -42,7 +42,7 @@ export const discoverOneDevice = async (options = {}) => {
  * @returns {Promise<Object>} Connected device
  */
 export const connectToDevice = async (address, options = {}) => {
-  const { parseAddress } = await import('open-neon-core')
+  const { parseAddress } = await import('open-neon-js-api-core')
   const parsed = parseAddress(address)
   
   const deviceInfo = {

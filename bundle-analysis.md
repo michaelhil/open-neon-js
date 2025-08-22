@@ -33,8 +33,8 @@ Generated: 2024-08-22
 
 ### ✅ **Minimal Dependencies**
 - Core package has zero runtime dependencies
-- Node package uses only essential dependencies (ws, bonjour-service, rxjs)
-- Browser package minimal dependencies (rxjs only)
+- Node package uses only essential dependencies (ws, bonjour-service as optional)
+- Browser package has zero external dependencies (uses core only)
 
 ### ✅ **Efficient Code Splitting**
 - Runtime detection prevents loading unused platform code

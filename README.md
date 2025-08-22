@@ -1,8 +1,8 @@
-# Open Neon JS - JavaScript/TypeScript API for Pupil Labs Neon
+# Open Neon JS API - JavaScript/TypeScript API for Pupil Labs Neon
 
 > Research-grade eye tracking API for Node.js and browsers. Designed for scientific applications requiring high-precision gaze data streaming and device control.
 
-[![npm version](https://badge.fury.io/js/%40open-neon%2Fapi.svg)](https://badge.fury.io/js/%40open-neon%2Fapi)
+[![npm version](https://badge.fury.io/js/open-neon-js-api.svg)](https://badge.fury.io/js/open-neon-js-api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Support](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 [![Bun Support](https://img.shields.io/badge/bun-%3E%3D1.0.0-orange)](https://bun.sh/)
@@ -26,17 +26,17 @@ This library provides a comprehensive JavaScript/TypeScript API for the [Pupil L
 
 ```bash
 # Auto-detecting package (recommended)
-npm install @open-neon/api
+npm install open-neon-js-api
 
 # Platform-specific packages
-npm install @open-neon/node      # Node.js only
-npm install @open-neon/browser   # Browser only
+npm install open-neon-js-api-node      # Node.js only
+npm install open-neon-js-api-browser   # Browser only
 ```
 
 ### Basic Usage
 
 ```javascript
-import { connectToDevice } from '@open-neon/api'
+import { connectToDevice } from 'open-neon-js-api'
 
 // Connect to device
 const device = await connectToDevice('192.168.1.100:8080')
@@ -73,7 +73,7 @@ setTimeout(async () => {
 <html>
 <head>
   <script type="module">
-    import { connectToDevice } from '@open-neon/browser'
+    import { connectToDevice } from 'open-neon-js-api-browser'
     
     const device = await connectToDevice('192.168.1.100:8080')
     const gazeStream = device.createGazeStream()
@@ -103,11 +103,11 @@ This project uses a modular architecture optimized for different environments:
 
 ```javascript
 // Auto-detection (recommended)
-import { connectToDevice } from '@open-neon/api'
+import { connectToDevice } from 'open-neon-js-api'
 
 // Platform-specific (advanced usage)
-import { connectToDevice } from '@open-neon/node'
-import { connectToDevice } from '@open-neon/browser'
+import { connectToDevice } from 'open-neon-js-api-node'
+import { connectToDevice } from 'open-neon-js-api-browser'
 ```
 
 ## 🔧 Development Setup
@@ -121,8 +121,8 @@ import { connectToDevice } from '@open-neon/browser'
 
 ```bash
 # Clone repository
-git clone https://github.com/michaelhil/open-neon-js
-cd open-neon-js
+git clone https://github.com/michaelhil/open-neon-js-api
+cd open-neon-js-api
 
 # Install dependencies (works with both npm and bun)
 npm install
@@ -161,7 +161,7 @@ npm run debug-connection -- --device=192.168.1.100:8080
 ### Device Connection
 
 ```javascript
-import { connectToDevice, discoverDevices } from '@open-neon/api'
+import { connectToDevice, discoverDevices } from 'open-neon-js-api'
 
 // Auto-discovery
 const devices = await discoverDevices()
@@ -277,21 +277,25 @@ gazeStream.subscribe({
 ### Real-time Analysis
 
 ```javascript
-import { connectToDevice } from '@open-neon/api'
-import { filter, map, bufferTime } from 'rxjs'
+import { connectToDevice } from 'open-neon-js-api'
 
 const device = await connectToDevice()
 const gazeStream = device.createGazeStream()
 
-// Fixation detection
-const fixations = gazeStream.pipe(
-  filter(gaze => gaze.confidence > 0.8),
-  bufferTime(100),  // 100ms windows
-  map(detectFixations)
-)
-
-fixations.subscribe(fixation => {
-  console.log('Fixation detected:', fixation)
+// Fixation detection with custom Observable
+let gazeBuffer = []
+gazeStream.subscribe(gaze => {
+  if (gaze.confidence > 0.8) {
+    gazeBuffer.push(gaze)
+    // Process buffer every 100ms worth of data
+    if (gazeBuffer.length >= 20) {  // ~100ms at 200Hz
+      const fixation = detectFixations(gazeBuffer)
+      if (fixation) {
+        console.log('Fixation detected:', fixation)
+      }
+      gazeBuffer = []  // Clear buffer
+    }
+  }
 })
 ```
 
@@ -379,8 +383,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **Pupil Labs**: https://pupil-labs.com/
 - **Neon Documentation**: https://docs.pupil-labs.com/neon/
 - **Python API**: https://github.com/pupil-labs/realtime-api
-- **Issues**: https://github.com/michaelhil/open-neon-js/issues
-- **Discussions**: https://github.com/michaelhil/open-neon-js/discussions
+- **Issues**: https://github.com/michaelhil/open-neon-js-api/issues
+- **Discussions**: https://github.com/michaelhil/open-neon-js-api/discussions
 
 ## 🙏 Acknowledgments
 

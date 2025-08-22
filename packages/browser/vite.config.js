@@ -14,11 +14,10 @@ export default defineConfig({
       fileName: (format) => format === 'es' ? 'index.js' : 'index.umd.js'
     },
     rollupOptions: {
-      external: ['open-neon-core', 'rxjs'],
+      external: ['open-neon-js-api-core'],
       output: {
         globals: {
-          'open-neon-core': 'OpenNeonCore',
-          'rxjs': 'rxjs'
+          'open-neon-js-api-core': 'OpenNeonCore'
         }
       }
     },

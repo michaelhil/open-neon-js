@@ -4,7 +4,7 @@
  */
 
 // Re-export core functionality
-export * from 'open-neon-core'
+export * from 'open-neon-js-api-core'
 
 // Browser specific exports
 export { createDevice } from './device.js'

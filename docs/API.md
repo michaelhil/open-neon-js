@@ -449,47 +449,62 @@ console.log(`Memory usage: ${result.context.memoryUsage.heapUsed}`)
 
 ## 🔄 Observable Patterns
 
-### RxJS Integration
+### Custom Observable Implementation
 ```javascript
-import { map, filter, bufferTime } from 'rxjs/operators'
-
 const gazeStream = device.createGazeStream()
 
-// Filter high-confidence gaze data
-const highConfidenceGaze = gazeStream.pipe(
-  filter(gaze => gaze.confidence > 0.8)
-)
+// Filter high-confidence gaze data with custom Observable
+gazeStream.subscribe(gaze => {
+  if (gaze.confidence > 0.8) {
+    // Process high-confidence gaze data
+    console.log('High confidence gaze:', gaze)
+  }
+})
 
-// Buffer gaze data into 100ms windows
-const gazeWindows = gazeStream.pipe(
-  bufferTime(100)
-)
+// Buffer gaze data into 100ms windows using custom Observable
+let gazeBuffer = []
+const processWindow = setInterval(() => {
+  if (gazeBuffer.length > 0) {
+    // Process buffered gaze data
+    console.log('Processing window:', gazeBuffer)
+    gazeBuffer = []
+  }
+}, 100)
 
 // Convert to screen coordinates
-const screenGaze = gazeStream.pipe(
-  map(gaze => ({
+gazeStream.subscribe(gaze => {
+  const screenGaze = {
     ...gaze,
     screenX: gaze.x * screenWidth,
     screenY: gaze.y * screenHeight
-  }))
-)
+  }
+  // Process screen coordinates
+})
 ```
 
 ### Custom Operators
 ```javascript
-// Fixation detection
-const detectFixations = (threshold = 50, duration = 100) => {
-  return source => source.pipe(
-    // Custom fixation detection logic
-    bufferTime(duration),
-    filter(buffer => buffer.length > 0),
-    map(buffer => analyzeFixation(buffer, threshold))
-  )
+// Fixation detection with custom Observable
+const detectFixations = (gazeStream, threshold = 50, duration = 100) => {
+  let fixationBuffer = []
+  let fixations = []
+  
+  gazeStream.subscribe(gaze => {
+    fixationBuffer.push(gaze)
+    
+    // Process buffer at specified duration intervals
+    if (fixationBuffer.length >= duration * 0.2) { // Assuming 200Hz
+      const fixation = analyzeFixation(fixationBuffer, threshold)
+      if (fixation) {
+        fixations.push(fixation)
+        console.log('Fixation detected:', fixation)
+      }
+      fixationBuffer = []
+    }
+  })
+  
+  return fixations
 }
-
-const fixations = gazeStream.pipe(
-  detectFixations(50, 100)
-)
 ```
 
 ## 🚀 Performance Optimization
@@ -502,13 +517,17 @@ const gazeStream = device.createGazeStream({
   bufferSize: 1000        // Large buffer for stability
 })
 
-// Process in batches for efficiency
-gazeStream.pipe(
-  bufferTime(50),         // 50ms batches (20 Hz processing)
-  filter(batch => batch.length > 0),
-  map(batch => processBatch(batch))
-).subscribe(processedData => {
-  // Handle processed batch
+// Process in batches for efficiency with custom Observable
+let batchBuffer = []
+const batchInterval = setInterval(() => {
+  if (batchBuffer.length > 0) {
+    processBatch(batchBuffer)
+    batchBuffer = []
+  }
+}, 50) // 50ms batches (20 Hz processing)
+
+gazeStream.subscribe(gaze => {
+  batchBuffer.push(gaze)
 })
 ```
 

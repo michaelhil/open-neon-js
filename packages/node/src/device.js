@@ -4,7 +4,7 @@
 import { EventEmitter } from 'node:events'
 import WebSocket from 'ws'
 // Use native fetch API (available in Node.js 18+)
-import { Observable } from 'open-neon-core'
+import { Observable } from 'open-neon-js-api-core'
 import {
   API_PATHS,
   WS_PATHS,
@@ -23,7 +23,7 @@ import {
   enhanceGazeData,
   enhanceError,
   createSemanticConfig
-} from 'open-neon-core'
+} from 'open-neon-js-api-core'
 
 /**
  * Create a device instance
