@@ -1,0 +1,43 @@
+{
+  "name": "@open-neon/browser",
+  "version": "0.1.0-beta.1",
+  "type": "module",
+  "description": "Browser implementation for Pupil Labs Neon eye tracker with WebSocket and WebRTC support",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@open-neon/core": "workspace:*",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "vite": "^5.0.11",
+    "vitest": "^1.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

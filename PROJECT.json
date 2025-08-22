@@ -1,0 +1,105 @@
+{
+  "project": {
+    "name": "pupil-labs-neon-js",
+    "description": "JavaScript/TypeScript API for Pupil Labs Neon eye tracker",
+    "version": "0.1.0",
+    "status": "active_development",
+    "last_updated": "2024-08-22"
+  },
+  "architecture": {
+    "approach": "separate_packages_with_meta_detection",
+    "reasoning": "Chosen over isomorphic for clear separation of concerns and platform-specific optimizations",
+    "packages": {
+      "core": "Shared types, utilities, and business logic",
+      "node": "Node.js-specific implementation with full protocol support",
+      "browser": "Browser-optimized with WebSocket-only streaming",
+      "meta": "Auto-detection and platform-appropriate package loading"
+    },
+    "technology_stack": {
+      "runtime": "bun",
+      "language": "JavaScript with TypeScript via JSDoc",
+      "patterns": "Functional composition over classes",
+      "streaming": "RxJS for reactive data flows",
+      "build": "Vite with ES/CJS/UMD outputs",
+      "testing": "Comprehensive multi-level testing infrastructure"
+    }
+  },
+  "testing": {
+    "importance_for_research_software": {
+      "reliability": "Research software must produce consistent, reproducible results across different environments and conditions",
+      "validation": "Scientific applications require rigorous validation of data integrity, timing accuracy, and measurement precision",
+      "reproducibility": "Academic and research use cases demand that experiments can be replicated with identical outcomes",
+      "error_transparency": "Research workflows need clear error reporting to distinguish between software issues and experimental phenomena",
+      "long_term_stability": "Research projects often span years - software must remain stable and maintainable throughout study duration"
+    },
+    "current_functionality": {
+      "architecture": "Multi-level testing pyramid: Unit tests (co-located) → Integration tests (package interactions) → Scenario tests (real-world usage) → Performance tests (metrics validation)",
+      "mock_infrastructure": "Complete Pupil Labs device simulation with HTTP REST API, WebSocket streams, mDNS discovery, and realistic 200Hz gaze data generation",
+      "debugging_system": "Structured error classification with detailed context, root cause analysis, and LLM-friendly JSON output for automated debugging",
+      "performance_monitoring": "Latency measurement, throughput validation, memory leak detection, and streaming performance analysis",
+      "cross_platform_validation": "Node.js and browser compatibility testing with environment-specific optimizations"
+    },
+    "future_improvements": {
+      "automated_testing_expansion": {
+        "continuous_integration": "GitHub Actions workflows with matrix testing across Node.js versions, operating systems, and browser environments",
+        "regression_detection": "Automated performance regression detection with historical baseline comparison and alerting",
+        "hardware_simulation": "Advanced device behavior simulation including battery drain, network conditions, calibration states, and error scenarios",
+        "data_validation": "Comprehensive gaze data quality validation including statistical analysis, outlier detection, and physiological plausibility checks",
+        "stress_testing": "Extended duration testing (24+ hours), high-frequency data validation, and memory stability under continuous operation"
+      },
+      "user_centered_testing": {
+        "researcher_workflows": "End-to-end testing of common research scenarios including experiment setup, data collection, real-time processing, and export workflows",
+        "usability_validation": "API usability testing with actual researchers to validate intuitive design and reduce learning curve",
+        "documentation_testing": "Automated testing of code examples in documentation to ensure they remain functional and accurate",
+        "integration_scenarios": "Testing with popular research frameworks (PsychoPy, jsPsych, Lab.js) and data analysis tools (R, Python, MATLAB)",
+        "accessibility_compliance": "Ensuring research software works across different accessibility needs and institutional computing environments"
+      },
+      "long_term_maintainability": {
+        "dependency_management": "Automated dependency updates with compatibility testing, security vulnerability scanning, and license compliance monitoring",
+        "api_stability": "Semantic versioning with deprecation warnings, migration guides, and backward compatibility testing across major versions",
+        "documentation_evolution": "Living documentation that evolves with the codebase, including automatically generated API references and maintained examples",
+        "community_contribution": "Clear contribution guidelines, code review processes, and maintainer succession planning for research community adoption",
+        "institutional_support": "Integration with institutional software management, deployment pipelines, and support structures for academic environments"
+      },
+      "research_specific_considerations": {
+        "data_provenance": "Testing of data lineage tracking, experiment metadata preservation, and audit trail capabilities for research integrity",
+        "ethical_compliance": "Validation of privacy controls, data anonymization features, and consent management for human subjects research",
+        "publication_support": "Testing of data export formats, statistical analysis integration, and reproducible research workflow support",
+        "collaboration_features": "Multi-user testing, data sharing protocols, and version control integration for collaborative research projects",
+        "institutional_integration": "Testing with common institutional authentication systems, network restrictions, and computing environment constraints"
+      }
+    }
+  },
+  "development_phases": {
+    "phase_1_foundation": {
+      "status": "completed",
+      "deliverables": ["Core architecture", "Package structure", "Basic implementations", "Initial testing infrastructure"]
+    },
+    "phase_2_testing": {
+      "status": "completed", 
+      "deliverables": ["Comprehensive testing documentation", "Mock server infrastructure", "Debug utilities", "LLM-friendly error reporting"]
+    },
+    "phase_3_validation": {
+      "status": "pending",
+      "deliverables": ["Performance benchmarking", "Cross-platform testing", "Hardware integration testing", "Research workflow validation"]
+    },
+    "phase_4_optimization": {
+      "status": "pending",
+      "deliverables": ["Performance optimization", "Bundle size reduction", "Memory efficiency", "Streaming optimization"]
+    },
+    "phase_5_documentation": {
+      "status": "pending",
+      "deliverables": ["API documentation", "Research examples", "Integration guides", "Best practices"]
+    }
+  },
+  "constraints": {
+    "technical": ["WebSocket streaming limitations in browsers", "RTSP proxy requirements", "Network discovery challenges"],
+    "platform": ["Browser security restrictions", "Node.js version compatibility", "Mobile device limitations"],
+    "research": ["Academic publication requirements", "Institutional IT policies", "Ethics compliance needs"]
+  },
+  "success_metrics": {
+    "technical": ["95%+ test coverage", "<2min test suite runtime", "100% error traceability"],
+    "usability": ["Clear API design", "Comprehensive documentation", "Research community adoption"],
+    "research": ["Data accuracy validation", "Performance consistency", "Reproducible results across environments"]
+  }
+}
