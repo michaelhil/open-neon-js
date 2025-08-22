@@ -4,7 +4,7 @@
  */
 
 // Re-export core functionality
-export * from '@pupil-labs/neon-core'
+export * from 'open-neon-core'
 
 // Browser specific exports
 export { createDevice } from './device.js'

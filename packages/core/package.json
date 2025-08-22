@@ -1,5 +1,5 @@
 {
-  "name": "@open-neon/core",
+  "name": "open-neon-core",
   "version": "0.1.0-beta.1",
   "type": "module",
   "description": "Core types, models, and utilities for Pupil Labs Neon eye tracker",

@@ -1,5 +1,5 @@
 {
-  "name": "@open-neon/node",
+  "name": "open-neon-node",
   "version": "0.1.0-beta.1",
   "type": "module",
   "description": "Node.js implementation for Pupil Labs Neon eye tracker with full network capabilities",
@@ -26,7 +26,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@open-neon/core": "workspace:*",
+    "open-neon-core": "0.1.0-beta.1",
     "ws": "^8.16.0",
     "node-fetch": "^3.3.2",
     "bonjour-service": "^1.2.1",

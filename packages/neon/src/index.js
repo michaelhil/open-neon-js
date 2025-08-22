@@ -5,7 +5,7 @@
  */
 
 // Re-export core functionality
-export * from '@pupil-labs/neon-core'
+export * from 'open-neon-core'
 
 // Environment detection
 const isNode = typeof process !== 'undefined' && 
@@ -24,7 +24,7 @@ export const loadNodeImplementation = async () => {
   if (!isNode) {
     throw new Error('Node.js implementation not available in browser environment')
   }
-  const nodeModule = await import('@pupil-labs/neon-node')
+  const nodeModule = await import('open-neon-node')
   return nodeModule
 }
 
@@ -32,7 +32,7 @@ export const loadBrowserImplementation = async () => {
   if (!isBrowser) {
     throw new Error('Browser implementation not available in Node.js environment')
   }
-  const browserModule = await import('@pupil-labs/neon-browser')
+  const browserModule = await import('open-neon-browser')
   return browserModule
 }
 

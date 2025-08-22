@@ -4,7 +4,7 @@
  */
 
 // Re-export core functionality
-export * from '@pupil-labs/neon-core'
+export * from 'open-neon-core'
 
 // Node.js specific exports
 export { 
