@@ -159,7 +159,8 @@
       "Academic research experiments with eye tracking data collection",
       "UX/UI research for interface design optimization", 
       "Cognitive research studying attention patterns and visual behavior",
-      "Accessibility research for assistive technology development"
+      "Accessibility research for assistive technology development",
+      "IoT and real-time systems integration with MQTT streaming support"
     ],
     "llm_integration_scenario": {
       "description": "LLM interfacing with eye tracker through MCP server for intelligent interaction",
@@ -194,6 +195,32 @@
         "Error handling must be LLM-comprehensible with clear semantic meaning",
         "API responses should include confidence levels and data quality indicators",
         "Consider privacy and consent mechanisms for LLM gaze data access"
+      ]
+    },
+    "mqtt_streaming_scenario": {
+      "description": "MQTT streaming integration for IoT ecosystems and distributed systems coordination",
+      "current_api_suitability": "Excellent foundation with Observable streams and semantic enhancement - ready for external MQTT package implementation",
+      "use_cases": [
+        "Smart environment control with gaze-triggered lighting and display management",
+        "Multi-device coordination across desktop, mobile, and embedded systems", 
+        "Industrial monitoring for operator attention during critical processes",
+        "Digital signage optimization based on real-time attention metrics",
+        "Collaborative workspaces with shared attention data coordination",
+        "Edge computing applications for ultra-low latency responsive systems"
+      ],
+      "implementation_strategy": {
+        "phase_1": "External open-neon-mqtt package for validation and requirements gathering",
+        "phase_2": "Core API integration based on adoption metrics and performance benefits",
+        "priority": "high",
+        "rationale": "MQTT is standard IoT protocol with broad ecosystem support and strong potential for industrial/smart home applications"
+      },
+      "technical_considerations": [
+        "Message format optimization with semantic enhancement integration",
+        "QoS configuration for safety-critical vs. best-effort applications", 
+        "Batching strategies for efficient MQTT publishing with 200Hz data streams",
+        "TLS encryption and authentication for secure broker connections",
+        "Error recovery with exponential backoff and automatic reconnection",
+        "Data anonymization options for privacy-sensitive deployments"
       ]
     }
   },
